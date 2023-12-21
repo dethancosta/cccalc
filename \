@@ -16,8 +16,8 @@ def rec_parse(tokens: List[str]) -> List[str]:
                 else:
                     tokens = tokens[:i-1] + [prod]
             except ValueError:
-                pass
-        i += 1
+                continue
+            i += 1
     stack = []
     token_iter = iter(tokens)
     for i in token_iter:
@@ -30,8 +30,6 @@ def rec_parse(tokens: List[str]) -> List[str]:
             while brackets > 0:
                 if j == ')':
                     brackets -= 1
-                if j == '(':
-                    brackets += 1
                 if brackets > 0:
                     block.append(j)
                     j = next(token_iter)
